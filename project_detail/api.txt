@@ -9,7 +9,7 @@ Authen:
             }
             - Response: {
                 "status": 1 (1: success, -1:fail),
-                "msg": ""
+                "msg": "login"
             }
 
     API:    logout
