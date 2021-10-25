@@ -1,0 +1,24 @@
+I) Phân tích dự án:
+- User:
+    + Trang chủ
+    + Trang danh sách sản phẩm
+    + Trang chi tiết sản phẩm
+    + Trang giỏ hàng
+    + Trang checkout
+    + Trang thông tin tài khoản
+
+
+- Admin:
+    + Tài khoản người dùng:
+        Quản lý role (admin, user)
+        Quản lý người dùng: admin/user
+            Danh sách/thêm/sửa/xóa
+        Đăng ký tài khoản
+        Đăng nhập
+    + Quản lý danh mục sản phẩm
+    + Quản lý sản phẩm
+    + Quản lý đơn hàng
+        Hiển thị danh sách đơn hàng -> Hiển thị giảm dần theo thời gian 
+        (quản lý trạng thái đơn hàng)
+    + Quản lý phản hồi
+

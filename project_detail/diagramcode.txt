@@ -1,0 +1,98 @@
+
+
+table users{
+    id int [pk] 
+    fullname varchar(50)
+    email varchar(150)
+    address varchar(200)
+    password varchar(50)
+    phonenumber varchar(12)
+    created_at datetime
+    updated_at datetime
+    deleted int
+}
+
+table login_token{
+    id_user int [pk]
+    token varchar(50) [pk]
+}
+
+table category{
+  id int [pk]
+  name varchar(100)
+}
+
+table products{
+    id int [pk]
+    category_id int
+    title varchar(350)
+    price int
+    discount int
+    thumbnail varchar(500)
+    description longtext
+    created_at datetime
+    updated_at datetime
+    deleted int
+}
+
+table galery{
+    id int [pk]
+    product_id int
+    thumbnail varchar(500)
+}
+
+table feedback{
+  id int [pk]
+    user_id int 
+    subject_name varchar(200)
+    note varchar(500)
+}
+
+table orders{
+  id int [pk]
+    user_id int 
+    fullname varchar(50)
+    email varchar(150)
+    address varchar(200)
+    phone_number varchar(12)
+    note varchar(500)
+    order_date datetime
+    status int
+    total_money int
+}
+
+table order_details{
+  id int [pk]
+    order_id int
+    product_id int 
+    price int
+    num int
+    total_money int
+}
+
+table admin{
+  id int [pk] 
+    fullname varchar(50)
+    email varchar(150)
+    address varchar(200)
+    password varchar(50)
+    phonenumber varchar(12)
+    created_at datetime
+    updated_at datetime
+    deleted int
+}
+
+
+Ref: "users"."id" < "login_token"."id_user"
+
+Ref: "category"."id" < "products"."category_id"
+
+Ref: "users"."id" < "orders"."user_id"
+
+Ref: "products"."id" < "galery"."product_id"
+
+Ref: "products"."id" < "order_details"."product_id"
+
+Ref: "orders"."id" < "order_details"."order_id"
+
+Ref: "users"."id" < "feedback"."user_id"
