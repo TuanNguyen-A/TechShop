@@ -24,12 +24,12 @@ table category{
 
 table products{
     id int [pk]
-    category_id int
     title varchar(350)
     price int
     discount int
     thumbnail varchar(500)
     description longtext
+    admin_create_id int
     created_at datetime
     updated_at datetime
     deleted int
@@ -43,7 +43,12 @@ table galery{
 
 table feedback{
   id int [pk]
-    user_id int 
+  user_id int 
+    fullname varchar(50)
+    email varchar(150)
+    address varchar(200)
+    password varchar(50)
+    phonenumber varchar(12)
     subject_name varchar(200)
     note varchar(500)
 }
@@ -82,10 +87,18 @@ table admin{
     deleted int
 }
 
+table admin_token{
+  id_admin int [pk]
+  token varchar(50) [pk]
+}
+
+table category_product{
+  product_id int [pk]
+  category_id int [pk]
+}
+
 
 Ref: "users"."id" < "login_token"."id_user"
-
-Ref: "category"."id" < "products"."category_id"
 
 Ref: "users"."id" < "orders"."user_id"
 
@@ -95,4 +108,14 @@ Ref: "products"."id" < "order_details"."product_id"
 
 Ref: "orders"."id" < "order_details"."order_id"
 
+
 Ref: "users"."id" < "feedback"."user_id"
+
+Ref: "admin"."id" < "products"."admin_create_id"
+
+
+Ref: "admin"."id" < "admin_token"."id_admin"
+
+Ref: "category"."id" < "category_product"."category_id"
+
+Ref: "products"."id" < "category_product"."product_id"

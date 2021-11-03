@@ -1,7 +1,7 @@
 <?php
 
 define('HOST', 'localhost');
-define('DATABASE', 'api_exercise_db');
+define('DATABASE', 'techshop_db');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 

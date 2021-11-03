@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../public/admin/js/config.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid d-flex">
+        <iframe src="../layout/sidebar.html" frameborder=""></iframe>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="text-center">Feedback List</div>
+            </div>
+            <div class="panel-body">
+                <a href="#" class="text-center" onclick="logout()">(Logout)</a>
+                <form action="">
+                    <div class="form-group">
+                        <input id="search" type="text" name="search" placeholder="Search Email"
+                            style="width: 100%; margin: 5px;">
+                    </div>
+                </form>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width=60px>STT</th>
+                            <th>Fullname</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Phone number</th>
+                            <th>Subject</th>
+                            <th width=60px></th>
+                            <th width=60px></th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackList">
+
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(function () {
+            var search = '';
+
+            listFeedback();
+            $('#search').on("keyup", function (e) {
+                search = $('#search').val();
+                listFeedback();
+            })
+
+            function listFeedback() {
+                $('#feedbackList').html('');
+                $.post(BASE_URL + API_FEEDBACK, {
+                    'action': LIST,
+                    'search': search
+                }, function (data) {
+                    var obj = JSON.parse(data);
+                    if (obj.status == 1) {
+                        feedbackList = obj.feedbackList;
+                        for (i = 0; i < feedbackList.length; i++) {
+                            item = feedbackList[i];
+
+                            $('#feedbackList').append(`
+                                    <tr>
+                                        <td>${i + 1}</td>
+                                        <td>${item['fullname']}</td>
+                                        <td>${item['email']}</td>
+                                        <td>${item['address']}</td>
+                                        <td>${item['phone_number']}</td>
+                                        <td>${item['subject_name']}</td>
+                                        <td>${item['readed'] == 0 ? 'chưa đọc' : 'đã đọc'}</td>
+                                        <td><button class="btn btn-info" onclick="detailFeedback(${item['id']},${item['readed']})">Chi tiết</button></td>
+                                    </tr>
+                                    `);
+                        }
+                    } else {
+                        window.open('../authen/login.html', '_self');
+                    }
+                });
+
+            }
+
+        })
+
+        //READ FEEDBACK
+        function detailFeedback(id, readed) {
+            if (!readed) {
+                $.post(BASE_URL + API_FEEDBACK, {
+                    'action': UPDATE,
+                    'id': id
+                }, function (data) {
+                    console.log(data);
+                })
+            }
+            window.open('detail.html?id=' + id, '_self');
+        }
+
+        function logout() {
+            $.post(BASE_URL + API_ADMIN_AUTHEN, {
+                'action': LOGOUT
+            }, function (data) {
+                window.open('login.html', '_self');
+            });
+        }
+    </script>
+</body>
+
+</html>

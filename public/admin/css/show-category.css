@@ -1,0 +1,25 @@
+#btn-add{
+    width: 100px;
+    float: right;
+}
+
+#name{
+    border-radius: 0.25rem;
+    height: 32px;
+    width: calc(100% - 125px);
+}
+
+.name{
+    height: 30px;
+    width: 100%;
+    border-color: transparent;
+}
+
+.name:focus-visible{
+    border-color: transparent;
+    outline: none;
+}
+
+tr:hover .name{
+    background-color: rgb(236,236,236);
+}

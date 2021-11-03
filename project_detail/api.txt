@@ -1,6 +1,7 @@
+---------------ADMIN------------------
 Authen:
     API:    login
-            - URL: api/authen.php
+            - URL: api/admin/authen.php
             - Method: POST
             - Request: {
                 "action": "login",
@@ -13,7 +14,7 @@ Authen:
             }
 
     API:    logout
-            - URL: api/authen.php
+            - URL: api/admin/authen.php
             - Method: POST
             - Request: {
                 "action": "logout"
@@ -24,17 +25,406 @@ Authen:
             }  
 
     API:    register
-            - URL: api/authen.php
+            - URL: api/admin/authen.php
             - Method: POST
             - Request: {
                 "action": "register",
-                "username": "",
+                "fullname": "",
                 "email": "",
                 "password": "",
                 "address": "",
-                "phonenumber": ""
+                "phone_number": ""
             }
             - Response: {
                 "status": 1 (1: success, -1:fail),
                 "msg": ""
             }
+            
+    API:    userList
+            - URL: api/admin/authen.php
+            - Method: POST
+            - Request: {
+                "action": "list",
+                "search": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "userList": [
+                    {
+                        "id": "",
+                        "fullname": "",
+                        "email": "",
+                        "address": "",
+                        "phone_number": ""
+                    }
+                ]
+            }
+
+Category:
+    API: Category List
+            - URL: api/category.php
+            - Method: POST
+            - Request: {
+                "action": "list",
+                "search": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "categoryList": [
+                    {
+                        "id": "",
+                        "name": ""
+                    }
+                ]
+            }
+
+    API: Add Category
+            - URL: api/category.php
+            - Method: POST
+            - Request: {
+                "action": "add",
+                "name": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+                ]
+            }
+    
+    API: Update Category
+            - URL: api/category.php
+            - Method: POST
+            - Request: {
+                "action": "update",
+                "id": "",
+                "name": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+    API: Delete Category
+            - URL: api/category.php
+            - Method: POST
+            - Request: {
+                "action": "delete",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+Product:
+    API: Product List
+            - URL: api/product.php
+            - Method: POST
+            - Request: {
+                "action": "list",
+                "search": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "productList": [
+                    {
+                        "id": "",
+                        "fullname": "",
+                        ...
+                    }
+                ],
+                "product_category": [
+                    product_id: [category of product]
+                ]
+            }
+
+    API: Add Product
+            - URL: api/product.php
+            - Method: POST
+            - Request: {
+                "action": "add",
+                "thumbnail": "",
+                "title": "",
+                "quantity": "",
+                "price": "",
+                "discount": "",
+                "description": "",
+                "category_id": []
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+                ]
+            }
+    
+    API: Update Product
+            - URL: api/product.php
+            - Method: POST
+            - Request: {
+                "action": "update",
+                "id": "",
+                "thumbnail": "",
+                "title": "",
+                "quantity": "",
+                "price": "",
+                "discount": "",
+                "description": "",
+                "category_id": []
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+    API: Delete Product
+            - URL: api/product.php
+            - Method: POST
+            - Request: {
+                "action": "delete",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+    API: Query Product
+            - URL: api/product.php
+            - Method: POST
+            - Request: {
+                "action": "query",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "product": $product,
+                "categoryList": $categoryList
+            }
+
+
+Order:
+    API: Order List
+            - URL: api/order.php
+            - Method: POST
+            - Request: {
+                "action": "list",
+                "search": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "orderList": 
+            }
+
+    API: Add order
+            - URL: api/order.php
+            - Method: POST
+            - Request: {
+                "action": "add",
+                "name": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+                ]
+            }
+    
+    API: Update Order
+            - URL: api/order.php
+            - Method: POST
+            - Request: {
+                "action": "update",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+    API: Delete Category
+            - URL: api/category.php
+            - Method: POST
+            - Request: {
+                "action": "delete",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+    
+    API: Query Order
+            - URL: api/order.php
+            - Method: POST
+            - Request: {
+                "action": "query",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "order": 
+                "order_detail": 
+            }
+
+
+Feedback:
+    API: Feedback List
+            - URL: api/feedback.php
+            - Method: POST
+            - Request: {
+                "action": "list",
+                "search": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "feedbackList":
+            }
+
+    API: Add Feedback
+            - URL: api/feedback.php
+            - Method: POST
+            - Request: {
+                "action": "add",
+                "name": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+                ]
+            }
+    
+    API: Update Feedback
+            - URL: api/feedback.php
+            - Method: POST
+            - Request: {
+                "action": "update",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+    API: Delete Feedback
+            - URL: api/feedback.php
+            - Method: POST
+            - Request: {
+                "action": "delete",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+    
+    API: Query Feedback
+            - URL: api/feedback.php
+            - Method: POST
+            - Request: {
+                "action": "query",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "feedback":
+            }
+
+---------------USER------------------
+Authen
+    API:    login
+            - URL: api/user/authen.php
+            - Method: POST
+            - Request: {
+                "action": "login",
+                "email": "",
+                "password": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "login"
+            }
+
+    API:    logout
+            - URL: api/user/authen.php
+            - Method: POST
+            - Request: {
+                "action": "logout"
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }  
+
+    API:    register
+            - URL: api/user/authen.php
+            - Method: POST
+            - Request: {
+                "action": "register",
+                "fullname": "",
+                "email": "",
+                "password": "",
+                "address": "",
+                "phone_number": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+  
+    API:    update user
+            - URL: api/user/authen.php
+            - Method: POST
+            - Request: {
+                "action": "update",
+                "id": ""
+                "fullname": "",
+                "password": "",
+                "address": "",
+                "phone_number": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": ""
+            }
+
+    API:    query user
+            - URL: api/user/authen.php
+            - Method: POST
+            - Request: {
+                "action": "query",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+                "user": {
+                    "id": "",
+                    "email": "",
+                    "fullname": "",
+                    "address": "",
+                    "phone_number": "",
+                }
+            }
+
+    API:    delete user
+            - URL: api/user/authen.php
+            - Method: POST
+            - Request: {
+                "action": "delete",
+                "id": ""
+            }
+            - Response: {
+                "status": 1 (1: success, -1:fail),
+                "msg": "",
+            }
+
+
+
+

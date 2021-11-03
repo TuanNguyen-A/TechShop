@@ -74,7 +74,27 @@ function fixSqlInjection($str){
     return $str;
 }
 
-function authenToken(){
+function authenAdminToken(){
+    if(isset($_SESSION['admin'])){
+        return $_SESSION['admin'];
+    }
+
+    $token = getCOOKIE('token');
+    if(empty($token)){
+        return null;
+    }
+
+    $sql = "select admin.* from admin, admin_token where admin.id = admin_token.id_admin and admin_token.token = '$token'";
+    $result = executeResult($sql);
+
+    if($result != null && count($result)>0){
+        $_SESSION['admin'] = $result[0];
+        return result[0];
+    }
+    return null;
+}
+
+function authenUserToken(){
     if(isset($_SESSION['user'])){
         return $_SESSION['user'];
     }
@@ -84,7 +104,7 @@ function authenToken(){
         return null;
     }
 
-    $sql = "select users.* from users, login_token where users.id = login_token.id_user and login_token.token = '$token'";
+    $sql = "select users.* from users, login_token where user.id = login_token.id_user and login_token.token = '$token'";
     $result = executeResult($sql);
 
     if($result != null && count($result)>0){
