@@ -1,0 +1,36 @@
+.list-mobile {
+  margin-top: 10px;
+}
+
+.list-mobile__sort-by {
+  margin-top: 10px;
+}
+
+.list-item-mobile {
+  margin-top: 24px;
+}
+
+.btn-see-more {
+  width: 100%;
+  max-width: 335px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  color: #212529;
+  box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px,
+    rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+  border-radius: 10px;
+}
+.btn-see-more i {
+  margin-left: 15px;
+}
+
+.btn-see-more:hover {
+  box-shadow: rgb(177 87 150) 0px 0px 0px 2px, rgb(177 87 150) 0px 0px 0px 2px;
+  color: #d26fb8;
+  background-color: rgb(255, 244, 253);
+}
