@@ -42,7 +42,7 @@
                 }, function(data){
                     var obj = JSON.parse(data);
                     if(obj.status == 1){
-                        window.open('../index.html','_self');
+                        window.open('users/show.html','_self');
                     }else{
                         alert(obj.msg);
                     }
