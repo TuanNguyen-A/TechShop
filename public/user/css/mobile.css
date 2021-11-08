@@ -6,11 +6,6 @@
     width: 50%;
   }
   .wide {
-<<<<<<< HEAD
-    width: 355px;
-    margin: 0 auto;
-  }
-=======
     width: 100%;
     margin: 0 auto;
     border-radius: inherit;
@@ -19,7 +14,6 @@
     margin-bottom: 66px;
   }
 
->>>>>>> a05416c (Giao dien)
   .flash__sale__product__list__wrapper {
     overflow-x: auto;
   }
@@ -35,10 +29,7 @@
     width: 500px;
     margin: 0;
     padding: 0 15px;
-<<<<<<< HEAD
-=======
     display: none;
->>>>>>> a05416c (Giao dien)
   }
   .featured__phone__product__item.view__all i {
     font-size: 1.5rem;
@@ -69,10 +60,7 @@
   .zalo__support__head__box,
   .scroll__to__top,
   .BtnZaloChat,
-<<<<<<< HEAD
-=======
   .footer,
->>>>>>> a05416c (Giao dien)
   .footer__information__background,
   .footer .tablet__shopping__cart,
   .slider__top__next__btn,
@@ -92,11 +80,7 @@
     display: none;
   }
   .header__background {
-<<<<<<< HEAD
-    width: 370px;
-=======
     width: 100%;
->>>>>>> a05416c (Giao dien)
     height: 54px;
     position: fixed;
     z-index: 9999999999999;
@@ -112,17 +96,6 @@
   }
   .smartphone__header__logo img {
     width: 100%;
-<<<<<<< HEAD
-    display: block;
-    height: 100%;
-    object-fit: cover;
-  }
-  .smartphone__header__search {
-    min-width: 146px;
-    display: block;
-    height: 35px;
-    margin-right: 10px;
-=======
     height: 100%;
     object-fit: contain;
   }
@@ -131,7 +104,6 @@
     display: flex;
     height: 35px;
     flex: 1;
->>>>>>> a05416c (Giao dien)
   }
   .smartphone__header__search i {
     color: #444;
@@ -146,10 +118,6 @@
   .smartphone__header__search input {
     height: 100%;
     display: block;
-<<<<<<< HEAD
-    width: 120px;
-=======
->>>>>>> a05416c (Giao dien)
     border: none;
     outline: none;
     border-top-right-radius: 8px;
@@ -190,19 +158,11 @@
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     color: white;
-<<<<<<< HEAD
-  }
-  .smartphone__shopping__cart i {
-    font-size: 0.6rem;
-    margin-top: 6px;
-    margin-bottom: 5px;
-=======
     margin-left: 2px;
   }
   .smartphone__shopping__cart i {
     font-size: 22px;
     margin: 6px;
->>>>>>> a05416c (Giao dien)
   }
   .smartphone__shopping__cart p {
     font-size: 0.6rem;
@@ -282,13 +242,7 @@
   }
   .web__ads__box {
     height: 80px;
-<<<<<<< HEAD
-    width: 355px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-=======
     width: 100%;
->>>>>>> a05416c (Giao dien)
   }
   .web__ads__box__pc__img {
     display: none;
@@ -357,10 +311,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
     align-items: center;
-<<<<<<< HEAD
-=======
     padding: 0 12px;
->>>>>>> a05416c (Giao dien)
   }
   .tablet__featured__phone__title a:first-child {
     font-size: 1rem;
@@ -399,17 +350,6 @@
   .featured__phone__product__list {
     overflow-x: auto;
   }
-<<<<<<< HEAD
-  .featured__phone__product__item {
-    width: 140px;
-    height: 309px;
-    transition: all ease 0.5s;
-    margin: 0 5px 10px 5px;
-    position: relative;
-  }
-=======
-
->>>>>>> a05416c (Giao dien)
   .featured__phone__product__item:hover {
     transform: scale(1.01);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -419,32 +359,17 @@
     color: #444;
   }
   .featured__phone__product__item {
-<<<<<<< HEAD
-    width: 140px;
-    height: 309px;
-=======
     transition: all ease 0.5s;
     margin: 0 7px 10px;
     position: relative;
     width: 46%;
     height: 290px;
->>>>>>> a05416c (Giao dien)
     padding: 5px;
     box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px,
       rgb(60 64 67 / 15%) 0px 2px 6px 2px;
     border-radius: 8px;
   }
   .featured__phone__product__img__wrapper {
-<<<<<<< HEAD
-    margin: 20px 0 15px 0;
-    width: 140px;
-    height: 100px;
-  }
-  .featured__phone__product__img__wrapper img {
-    width: 125px;
-    height: 100px;
-    object-fit: cover;
-=======
     width: 100%;
     height: 100px;
   }
@@ -452,7 +377,6 @@
     width: 100%;
     height: 100px;
     object-fit: contain;
->>>>>>> a05416c (Giao dien)
   }
   .featured__phone__product__desc__title {
     margin-bottom: 10px;
@@ -586,11 +510,7 @@
   .tablet__block__bottom__navbar {
     position: fixed;
     bottom: 0;
-<<<<<<< HEAD
-    width: 370px;
-=======
     width: 100%;
->>>>>>> a05416c (Giao dien)
     display: flex;
     justify-content: space-between;
     border-top-left-radius: 8px;
