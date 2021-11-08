@@ -94,7 +94,7 @@
                         $("[name=thumbnail]").val(product.thumbnail);
                         $("[name=description]").val(product.description);
                         category_id = obj.categoryList;
-                       console.log(obj.categoryList);
+                        console.log(obj.categoryList);
                         $("form").submit(function (e) {
                             var title = $("[name=title]").val();
                             var price = $("[name=price]").val();
@@ -102,6 +102,13 @@
                             var quantity = $("[name=quantity]").val();
                             var thumbnail = $("[name=thumbnail]").val();
                             var description = $("[name=description]").val();
+                            var checkbox = $("[name=category_id]");
+                            var category_id = [];
+                            for (var i = 0; i < checkbox.length; i++) {
+                                if (checkbox[i].checked === true) {
+                                    category_id.push(checkbox[i].value);
+                                }
+                            }
 
                             $.post(BASE_URL + API_PRODUCT, {
                                 'action': UPDATE,
@@ -114,7 +121,6 @@
                                 'thumbnail': thumbnail,
                                 'description': description
                             }, function (data) {
-                                alert(data)
                                 var obj = JSON.parse(data);
                                 if (obj.status == 1) {
                                     window.open('show.html', '_self');
@@ -180,8 +186,6 @@
                 var obj = JSON.parse(data);
                 if (obj.status == 1) {
                     categoryList = obj.categoryList;
-                    console.log(category_id)
-                    console.log(categoryList)
                     for (i = 0; i < categoryList.length; i++) {
                         item = categoryList[i];
                         $('#category_id').append(`

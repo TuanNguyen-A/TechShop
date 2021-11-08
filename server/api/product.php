@@ -116,8 +116,6 @@ function doAdd(){
     if (mysqli_query($conn, $sql)) {
         $last_id = mysqli_insert_id($conn);
         
-
-        
         for($i = 0; $i<count($category_id); $i++){
             $sql = "insert into product_category (product_id, category_id) values ($last_id ,$category_id[$i])";
             mysqli_query($conn, $sql);
@@ -145,22 +143,37 @@ function doAdd(){
 function doUpdate(){
     $id = getPOST('id');
     $title = getPOST('title');
-    $category_id = getPOST('category_id');
     $price = getPOST('price');
     $discount = getPOST('discount');
     $quantity = getPOST('quantity');
     $thumbnail = getPOST('thumbnail');
     $description = getPOST('description');
 
+    if(getPOST('category_id')==""){
+        $category_id = [];
+    }else{
+        $category_id = getPOST('category_id');
+    }
+
     $sql = "select * from products where id = '$id'";
     $result = executeResult($sql);
     if(count($result) > 0){
-        $sql = "update products set title = '$title', category_id = '$category_id', price = '$price', discount = '$discount', quantity = '$quantity', thumbnail = '$thumbnail', description = '$description' where id = ".$id;
+        $sql = "update products set title = '$title', price = '$price', discount = '$discount', quantity = '$quantity', thumbnail = '$thumbnail', description = '$description' where id = ".$id;
         execute($sql);
+
+        //update category
+        $sql = "delete from product_category where product_id = '$id'";
+        execute($sql);
+
+        for($i = 0; $i<count($category_id); $i++){
+            $sql = "insert into product_category (product_id, category_id) values ($id ,$category_id[$i])";
+            execute($sql);
+        }
 
         $res = [
             "status" => 1,
-            "msg" => "Update success!!!"
+            "msg" => "Update success!!!",
+            "cate" => $category_id
         ];
     }else{
         

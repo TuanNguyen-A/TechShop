@@ -76,17 +76,20 @@
                     'search': search
                 }, function (data) {
                     var obj = JSON.parse(data);
+                    //console.log(obj);
                     if (obj.status == 1) {
                         productList = obj.productList;
+                        console.log(productList)
                         for (i = 0; i < productList.length; i++) {
+                            console.log(i)
                             item = productList[i];
                             categoryList = '';
 
                             //get category_product
                             if (obj.product_category[item['id']]) {
                                 list = obj.product_category[item['id']]
-                                for (var i = 0; i < list.length; i++) {
-                                    categoryList += '<li class="category-item">' + list[i]['name'] + '</li>';
+                                for (var j = 0; j < list.length; j++) {
+                                    categoryList += '<li class="category-item">' + list[j]['name'] + '</li>';
                                 }
                             }
 

@@ -74,6 +74,7 @@
                         'action': LIST,
                         'search': search
                     }, function (data) {
+                        console.log(data);
                         var obj = JSON.parse(data);
                         if (obj.status == 1) {
                             userList = obj.userList;
