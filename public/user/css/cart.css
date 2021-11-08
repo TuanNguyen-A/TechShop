@@ -141,3 +141,43 @@
   color: white;
   cursor: pointer;
 }
+<<<<<<< HEAD
+=======
+
+@media (min-width: 740px) and (max-width: 1023px) {
+  .cart__title {
+    width: 100%;
+  }
+  .cart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  .cart_info-buyer {
+    width: 75%;
+  }
+  .cart_info-buyer-btn {
+    width: 75%;
+  }
+}
+
+@media (max-width: 739px) {
+  .cart {
+    width: 100%;
+  }
+  .cart_total {
+    width: 100%;
+    padding: 20px 8px;
+  }
+  .cart__container-pay {
+    margin: 0 4px;
+  }
+  .cart_info-buyer-btn {
+    margin-bottom: 15px;
+  }
+}
+>>>>>>> a05416c (Giao dien)
