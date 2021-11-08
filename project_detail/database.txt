@@ -32,7 +32,11 @@ create table login_token(
 )
 
 /*3)ADMIN TOKEN */
+<<<<<<< HEAD
 create table login_token(
+=======
+create table admin_token(
+>>>>>>> a05416c (Giao dien)
     id_admin int references admin(id), 
     token varchar(50) not null unique,
     primary key (id_admin, token)

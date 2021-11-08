@@ -1,9 +1,23 @@
 @media (min-width: 740px) and (max-width: 1023px) {
+<<<<<<< HEAD
   .m-2 {
     width: 50%;
   }
   .wide {
     width: 450px;
+=======
+  .app {
+    width: 100%;
+  }
+  .m-2 {
+    width: 50%;
+  }
+  #header {
+    width: 100%;
+  }
+  .wide {
+    width: 100%;
+>>>>>>> a05416c (Giao dien)
     margin: 0 auto;
   }
   ::-webkit-scrollbar {
@@ -21,9 +35,15 @@
     justify-content: center;
     flex-direction: column;
     box-shadow: none;
+<<<<<<< HEAD
     width: 500px;
     margin: 0;
     padding: 0 15px;
+=======
+    margin: 0;
+    padding: 0 15px;
+    display: none;
+>>>>>>> a05416c (Giao dien)
   }
   .featured__phone__product__item.view__all i {
     font-size: 1.5rem;
@@ -62,7 +82,10 @@
   .scroll__to__top,
   .BtnZaloChat,
   .footer__information__background,
+<<<<<<< HEAD
   .footer,
+=======
+>>>>>>> a05416c (Giao dien)
   .smartphone__header__logo,
   .smartphone__header__search,
   .smartphone__shopping__cart,
@@ -78,7 +101,11 @@
     display: none;
   }
   .header__height {
+<<<<<<< HEAD
     height: 110px;
+=======
+    height: 104px;
+>>>>>>> a05416c (Giao dien)
   }
   .tablet__modal {
     position: fixed;
@@ -90,7 +117,11 @@
     z-index: 12;
   }
   .tablet__header__background {
+<<<<<<< HEAD
     width: 450px;
+=======
+    width: 100%;
+>>>>>>> a05416c (Giao dien)
     height: 104px;
     z-index: 99;
     margin: 0 auto;
@@ -107,7 +138,11 @@
   .tablet__header__top {
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     width: 430px;
+=======
+    width: 100%;
+>>>>>>> a05416c (Giao dien)
     margin-bottom: 10px;
   }
   .tablet__header__logo {
@@ -191,7 +226,11 @@
   }
   .tablet__header__bottom input {
     height: 100%;
+<<<<<<< HEAD
     width: 403px;
+=======
+    width: 96%;
+>>>>>>> a05416c (Giao dien)
     border: none;
     outline: none;
     border-top-right-radius: 8px;
@@ -278,17 +317,28 @@
   }
   .web__ads__box {
     height: 80px;
+<<<<<<< HEAD
     width: 450px;
     margin-top: 10px;
     margin-bottom: 10px;
   }
   .web__ads__box__pc__img {
     display: none;
+=======
+    width: 100%;
+    border-radius: inherit;
+  }
+  .web__ads__box__pc__img {
+>>>>>>> a05416c (Giao dien)
   }
   .web__ads__box__tablet__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+<<<<<<< HEAD
+=======
+    display: none;
+>>>>>>> a05416c (Giao dien)
   }
   .flash__hot__sale {
     display: none;
@@ -331,7 +381,12 @@
   .flash__sale__product {
     width: 210px;
   }
+<<<<<<< HEAD
   .featured__phone {
+=======
+  .featured__phone,
+  .list-mobile {
+>>>>>>> a05416c (Giao dien)
     margin-top: 15px;
   }
   .featured__phone__gutter {
@@ -346,6 +401,10 @@
     justify-content: space-between;
     margin-bottom: 10px;
     align-items: center;
+<<<<<<< HEAD
+=======
+    padding: 0 12px;
+>>>>>>> a05416c (Giao dien)
   }
   .tablet__featured__phone__title a:first-child {
     font-size: 1rem;
@@ -377,6 +436,10 @@
   }
   .featured__phone__product__list {
     overflow-x: auto;
+<<<<<<< HEAD
+=======
+    padding: 0 8px;
+>>>>>>> a05416c (Giao dien)
   }
   .featured__phone__product__item {
     width: 140px;
@@ -555,6 +618,10 @@
     transform: translateX(-50%);
     padding: 15px 5px 15px 5px;
     z-index: 9999999999999999;
+<<<<<<< HEAD
+=======
+    display: none;
+>>>>>>> a05416c (Giao dien)
   }
   .tablet__block__bottom__navbar__item {
     display: flex;
@@ -594,4 +661,12 @@
     margin-bottom: 2px;
     font-size: 0.8rem;
   }
+<<<<<<< HEAD
+=======
+
+  .footer p {
+    text-align: center;
+    padding: 0 8px;
+  }
+>>>>>>> a05416c (Giao dien)
 }

@@ -34,3 +34,33 @@
   color: #d26fb8;
   background-color: rgb(255, 244, 253);
 }
+<<<<<<< HEAD
+=======
+
+@media (min-width: 740px) and (max-width: 1023px) {
+  .app {
+    padding: 0 8px;
+    overflow: auto;
+  }
+  .app .grid {
+    width: 100%;
+  }
+  .app .featured__phone__product__item {
+    width: 18%;
+  }
+  .app .featured__phone__product__list {
+    overflow-x: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 739px) {
+  .app {
+    overflow: auto;
+  }
+  .app .grid {
+    width: 100%;
+  }
+}
+>>>>>>> a05416c (Giao dien)
