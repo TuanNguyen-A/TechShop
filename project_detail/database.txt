@@ -32,11 +32,7 @@ create table login_token(
 )
 
 /*3)ADMIN TOKEN */
-<<<<<<< HEAD
-create table login_token(
-=======
 create table admin_token(
->>>>>>> a05416c (Giao dien)
     id_admin int references admin(id), 
     token varchar(50) not null unique,
     primary key (id_admin, token)
@@ -62,6 +58,13 @@ create table products(
     created_at datetime,
     updated_at datetime,
     deleted int
+)
+
+/*5)PRODUCT DETAIL */
+create table admin_token(
+    id int PRIMARY KEY, 
+    
+    FOREIGN KEY id REFERENCES products(id)
 )
 
 /*6)GALERY*/
@@ -121,4 +124,21 @@ create table cart(
     id int primary key,
     total_money int,
     
+)
+
+/*SPECIFICATION*/
+create table specification(
+    id int,
+    screen_size varchar(50),
+    screen_technology varchar(50),
+    rear_camera longtext,
+    front_camera longtext,
+    chipset varchar(50),
+    ram varchar(20),
+    main_memory varchar(20),
+    battery varchar(50),
+    sim varchar(50),
+    operating_system varchar(20),
+    FOREIGN KEY (id) REFERENCES products(id),
+    PRIMARY KEY(id)
 )

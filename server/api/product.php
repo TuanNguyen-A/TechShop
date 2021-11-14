@@ -24,7 +24,44 @@ switch($action){
     case 'query':
         doQuery();
         break; 
+    case 'categorize':
+        doProductHomeList();
+        break; 
 }
+
+function doProductHomeList(){
+    $cateList = [];
+    $sql = "select * from category";
+    $cateList = executeResult($sql);
+    $productList = [];
+    
+    for($i = 0; $i < count($cateList); $i++){
+        $cate = $cateList[$i];
+        $cate_id = $cate['id'];
+        $result = [];
+        $sql = "SELECT products.* FROM products
+            LEFT JOIN product_category ON products.id = product_category.product_id
+            LEFT JOIN category ON category.id = product_category.category_id
+            WHERE products.deleted = 0 AND product_category.category_id = $cate_id
+            ORDER BY products.title asc
+        ";
+        $result = executeResult($sql);
+        if($result){
+            $productList += [$cate_id => $result];
+        }
+    }
+
+    $res = [
+        "status" => 1,
+        "msg" => "success!!!",
+        "productList" => $productList,
+        "categoryList" => $cateList
+    ];
+    echo json_encode($res);
+    return;
+}
+
+
 
 function doProductList(){
     $user = authenAdminToken();
@@ -40,19 +77,30 @@ function doProductList(){
     }
     $search='';
     $addition='';
+    $category_id='';
     $search = getPOST('search');
+    $category_id = getPOST('category_id');
+
+    if($category_id!=''){
+        $addition = $addition."and category_id = '$category_id'";
+    }
+
 
     if($search!=''){
-        $addition = 'and (title like "%'.$search.'%")';
+        $addition = $addition.'and (title like "%'.$search.'%")';
     }
 
     $sql = "SELECT products.*
     FROM products 
+    LEFT JOIN product_category ON products.id = product_category.product_id
+    LEFT JOIN category ON category.id = product_category.category_id
     WHERE products.deleted = 0 ".$addition."
-    ORDER BY title asc
+    ORDER BY products.title asc
     ";
     $productList = executeResult($sql);
+
     
+
     $product_category = [];
     if($productList){
         for($i=0; $i < count($productList);$i++){
@@ -79,6 +127,7 @@ function doProductList(){
         "product_category" => $product_category
     ];
     echo json_encode($res);
+    return;
 }
 
 function doAdd(){
@@ -214,12 +263,13 @@ function doQuery(){
     $product = executeResult($sql, true);
     
     if($product==null){
-        
         $res = [
             "status" => -1,
             "msg" => "Query fail!!!"
         ];
     }else{
+
+        //Category List
         $product_id = $product['id'];
         $sql = "SELECT product_category.category_id
         FROM products

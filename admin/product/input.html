@@ -16,6 +16,9 @@
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 
 <body>
@@ -74,6 +77,14 @@
 
     <script type="text/javascript">
         $(function () {
+
+            $('#description').summernote({
+                height: 350,
+                codemirror:{
+                    theme: 'monokai'
+                }
+            });
+
             var id = '';
             var category_id = [];
             id = getUrlParameter('id');
