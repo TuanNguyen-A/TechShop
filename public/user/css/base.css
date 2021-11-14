@@ -126,7 +126,7 @@ html {
   font-weight: 700;
 }
 .featured__phone__title:hover .featured__phone__title__text {
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .toggle {

@@ -1,0 +1,60 @@
+.btn {
+  background-color: #d26fb8 !important;
+  border-color: #d26fb8 !important;
+}
+
+.btn-success {
+  background-color: #d26fb8;
+  border-color: #d26fb8;
+}
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+#search {
+  margin: 0;
+}
+
+.text-center-r {
+  display: flex;
+  justify-content: right;
+}
+
+.directional {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.directional .text-center {
+  margin-right: 16px;
+}
+
+.btn-right {
+  display: flex;
+  justify-content: right;
+}
+
+.btn-success.focus,
+.btn-success:focus,
+.btn-success:not([disabled]):not(.disabled).active:focus,
+.btn-success:not([disabled]):not(.disabled):active:focus,
+.show > .btn-success.dropdown-toggle:focus,
+.btn-primary:not([disabled]):not(.disabled).active:focus,
+.btn-primary:not([disabled]):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus,
+.btn-primary:focus {
+  box-shadow: none;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input {
+  outline: none;
+}

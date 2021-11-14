@@ -30,7 +30,7 @@
 }
 
 .btn-see-more:hover {
-  box-shadow: rgb(177 87 150) 0px 0px 0px 2px, rgb(177 87 150) 0px 0px 0px 2px;
+  box-shadow: rgb(177 87 150) 0px 0px 0px 0.5px;
   color: #d26fb8;
   background-color: rgb(255, 244, 253);
 }
