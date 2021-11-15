@@ -1,0 +1,85 @@
+.hehe {
+  box-shadow: 0px 0px 4px #ccc;
+  align-items: center;
+  transform: translateY(40%);
+  max-width: 720px;
+  height: 330px;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+body {
+  height: 100%;
+  background-color: #fad9f1;
+}
+
+.container h1 {
+  height: 50px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  background-color: #d26fb8;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.form-group {
+  margin-top: 15px;
+}
+
+.btn-primary {
+  min-width: 100px;
+}
+
+.container form {
+  margin: auto 15px;
+}
+
+.container button {
+  position: relative;
+  left: 40%;
+  width: 100px;
+  margin-top: 25px;
+  background-color: #d26fb8;
+  border: none;
+}
+
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  background-color: #d26fb8;
+  border-color: #d26fb8;
+  box-shadow: inherit;
+}
+
+.btn-check:active + .btn-primary:focus,
+.btn-check:checked + .btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: inherit;
+}
+
+.btn-check:active + .btn-primary,
+.btn-check:checked + .btn-primary,
+.btn-primary.active,
+.btn-primary:active,
+.show > .btn-primary.dropdown-toggle {
+  background-color: #d26fb8;
+  border-color: #d26fb8;
+}
+
+.btn-primary:hover {
+  background-color: #d26fb8;
+  border-color: inherit;
+}
+
+.form-control:focus {
+  border-color: 1px solid #ccc;
+  box-shadow: inherit;
+}
+
+.form-control:focus {
+  border-color: #e5c3dc;
+}

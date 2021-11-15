@@ -98,6 +98,10 @@
   display: none;
   animation: submenu-show-up ease 0.3s;
 }
+.search-input {
+  border-radius: 0;
+  border-color: #fff;
+}
 @keyframes submenu-show-up {
   from {
     display: none;
@@ -175,13 +179,12 @@
   margin-right: 15px;
 }
 .header__search__bar__icon {
-  width: 26px;
   background-color: white;
   border-right: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 5px;
+  padding: 0 6px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -890,6 +893,9 @@
   transition: all ease 0.5s;
   margin: 0 10px 10px 0;
   position: relative;
+}
+.featured__phone__product__item:nth-child(5) {
+  margin-right: 0;
 }
 
 .featured__phone__product__item:hover {

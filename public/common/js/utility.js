@@ -16,14 +16,14 @@ function pagination(num, page, total, id,search){
     }
     if(page > 1){
         $('#pagination').append(`
-        <li class="page-item">
+        <li class="page-item ">
             <a class="page-link" href="${url}page=${Number(page)-1}">Previous</a>
         </li>
         `);
     }
     for(i=1;i<=n;i++){
         $('#pagination').append(`
-        <li class="page-item " ${page==i ? 'disabled' : ''}>
+        <li class="page-item page_num" ${page==i ? 'disabled' : ''}>
             <a class="page-link" href="${url}page=${i}">${i}</a>
         </li>
         `);

@@ -159,16 +159,35 @@ function doAdd(){
     $description = getPOST('description');
     $created_at = $updated_at =  date('Y-m-d H:s:i');
 
-    $sql = "insert into products(admin_create_id, title, price, quantity, discount, thumbnail, description, created_at, updated_at, deleted) values ( '$admin_create_id', '$title', '$price', '$quantity', '$discount', '$thumbnail', '$description', '$created_at', '$updated_at', '0')";
+    $screen_size = getPOST('screen_size');
+    $screen_technology = getPOST('screen_technology');
+    $rear_camera = getPOST('rear_camera');
+    $front_camera = getPOST('front_camera');
+    $chipset = getPOST('chipset');
+    $ram = getPOST('ram');
+    $main_memory = getPOST('main_memory');
+    $battery = getPOST('battery');
+    $sim = getPOST('sim');
+    $operating_system = getPOST('operating_system');
+
+    $sql = "insert into products(admin_create_id, title, price, quantity, discount, thumbnail, description, created_at, updated_at, deleted) 
+        values ( '$admin_create_id', '$title', '$price', '$quantity', '$discount', '$thumbnail', '$description', '$created_at', '$updated_at', '0')";
     
     
     if (mysqli_query($conn, $sql)) {
         $last_id = mysqli_insert_id($conn);
         
+        //insert category
         for($i = 0; $i<count($category_id); $i++){
             $sql = "insert into product_category (product_id, category_id) values ($last_id ,$category_id[$i])";
             mysqli_query($conn, $sql);
         }
+
+        //insert specification
+        $sql = "insert into specification(id, screen_size, screen_technology, rear_camera, front_camera, chipset, ram, main_memory, battery, sim, operating_system) 
+        values ('$last_id', '$screen_size', '$screen_technology', '$rear_camera', '$front_camera', '$chipset', '$ram', '$main_memory', '$battery', '$sim', '$operating_system')";
+        mysqli_query($conn, $sql);
+        
         mysqli_close($conn);
 
         $res = [
@@ -197,6 +216,18 @@ function doUpdate(){
     $quantity = getPOST('quantity');
     $thumbnail = getPOST('thumbnail');
     $description = getPOST('description');
+    $screen_size = getPOST('screen_size');
+    $screen_technology = getPOST('screen_technology');
+    $rear_camera = getPOST('rear_camera');
+    $front_camera = getPOST('front_camera');
+    $chipset = getPOST('chipset');
+    $ram = getPOST('ram');
+    $main_memory = getPOST('main_memory');
+    $battery = getPOST('battery');
+    $sim = getPOST('sim');
+    $operating_system = getPOST('operating_system');
+
+    
 
     if(getPOST('category_id')==""){
         $category_id = [];
@@ -218,6 +249,12 @@ function doUpdate(){
             $sql = "insert into product_category (product_id, category_id) values ($id ,$category_id[$i])";
             execute($sql);
         }
+
+        //update specification
+    $sql = "update specification set screen_size = '$screen_size', screen_technology = '$screen_technology', rear_camera = '$rear_camera', 
+        front_camera = '$front_camera', chipset = '$chipset', ram = '$ram', main_memory = '$main_memory', battery = '$battery', sim = '$sim', operating_system = '$operating_system'
+        where id = ".$id;
+    execute($sql);
 
         $res = [
             "status" => 1,
@@ -259,7 +296,11 @@ function doDelete(){
 
 function doQuery(){
     $id = getPOST('id');
-    $sql = "select * from products where id = '$id' and deleted = 0";
+    $sql = "SELECT products.*, specification.screen_size, specification.screen_technology, specification.rear_camera, specification.front_camera, specification.chipset, specification.ram, specification.main_memory, specification.battery, specification.sim, specification.operating_system 
+    FROM products 
+    LEFT JOIN specification ON products.id = specification.id
+    WHERE products.id = '$id' AND products.deleted = 0";
+
     $product = executeResult($sql, true);
     
     if($product==null){
@@ -268,9 +309,9 @@ function doQuery(){
             "msg" => "Query fail!!!"
         ];
     }else{
+        $product_id = $product['id'];
 
         //Category List
-        $product_id = $product['id'];
         $sql = "SELECT product_category.category_id
         FROM products
         LEFT JOIN product_category ON products.id = product_category.product_id
@@ -289,6 +330,14 @@ function doQuery(){
         for($i = 0; $i<count($result);$i++){
             $categoryList[$i] = $result[$i]['category_id'];
         }
+
+        //Specification
+        // $sql = "SELECT specification.*
+        // FROM products
+        // LEFT JOIN specification ON products.id = specification.id
+        // WHERE products.deleted = 0 and products.id = $product_id
+        // ORDER BY title asc
+        // ";
         
         $res = [
             "status" => 1,
