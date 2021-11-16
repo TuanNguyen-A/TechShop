@@ -1,109 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="../public/user/font/themify-icons-font/themify-icons/themify-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../public/user/font/fontawesome-free-5.15.4/fontawesome-free-5.15.4-web/css/all.css"
-    />
-    <link rel="stylesheet" href="../public/user/css/base.css" />
-    <link rel="stylesheet" href="../public/user/css/home.css" />
-    <link rel="stylesheet" href="../public/user/css/tablet.css" />
-    <link rel="stylesheet" href="../public/user/css/mobile.css" />
-    <link rel="stylesheet" href="../public/user/css/product-list.css" />
-    <link rel="stylesheet" href="../public/user/css/product-detail.css" />
-    <link rel="stylesheet" href="../public/user/css/user-detail.css" />
-    <link rel="stylesheet" href="../public/user/css/cart.css" />
-    <title>LETech - Điện thoại,laptop,phụ kiện chính hãng</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  </head>
-  <body>
-    <div class="app">
-      <header id="header"></header>
-        <div class="grid">
-          <div class="row">
-            <div class="c-6 center">
-              <div class="cart">
-                <span class="cart__title"> Giỏ hàng của bạn </span>
-                <div class="cart__container-item">
-                  <div class="cart__container-pay">
-                    <img
-                      src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/thumbnail/300x/9df78eab33525d08d6e5fb8d27136e95/y/e/yellow_final_3.jpg"
-                      alt=""
-                      class="cart__item-img"
-                    />
-                    <div class="cart__item-info">
-                      <p class="cart__item-name">
-                        Samsung Galaxy Note Note 20 Ultra 5G-Vàng đồng
-                      </p>
-                      <p class="cart__item-price">21.500.000 đ</p>
-                      <div class="cart__add-remove">
-                        <span class="cart__remove"> Xóa khỏi giỏ </span>
-                        <button class="cart__add-remove-btn">-</button>
-                        <button class="cart__add-remove-btn">1</button>
-                        <button class="cart__add-remove-btn">+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="cart__container-pay">
-                    <img
-                      src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/thumbnail/300x/9df78eab33525d08d6e5fb8d27136e95/y/e/yellow_final_3.jpg"
-                      alt=""
-                      class="cart__item-img"
-                    />
-                    <div class="cart__item-info">
-                      <p class="cart__item-name">
-                        Samsung Galaxy Note Note 20 Ultra 5G-Vàng đồng
-                      </p>
-                      <p class="cart__item-price">21.500.000 đ</p>
-                      <div class="cart__add-remove">
-                        <span class="cart__remove"> Xóa khỏi giỏ </span>
-                        <button class="cart__add-remove-btn">-</button>
-                        <button class="cart__add-remove-btn">1</button>
-                        <button class="cart__add-remove-btn">+</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="cart_total">
-                  <span class="cart_total-title">- Tổng tiền:</span>
-                  <span class="cart_total-price"> 21.500.000 đ</span>
-                </div>
-                <div class="cart_info-buyer">
-                  <h3 class="cart_info-buyer-header">Thông tin đặt hàng</h3>
-                  <div class="cart_info-buyer-header-infomation">
-                    <div class="cart_info-buyer-1">
-                      <p class="cart_info-buyer-title">Họ và tên</p>
-                      <input class="cart_info-buyer-input" type="text" />
-                    </div>
-                    <div class="cart_info-buyer-2">
-                      <p class="cart_info-buyer-title">
-                        Số điện thoại đặt hàng
-                      </p>
-                      <input class="cart_info-buyer-input" type="text" />
-                    </div>
-                  </div>
-                  <p class="cart_info-buyer-title">Email</p>
-                  <input class="cart_info-buyer-input" type="email" />
-                  <p class="cart_info-buyer-title">Lưu ý của quý khách</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../public/user/font/themify-icons-font/themify-icons/themify-icons.css" />
+  <link rel="stylesheet" href="../public/user/font/fontawesome-free-5.15.4/fontawesome-free-5.15.4-web/css/all.css" />
+  <link rel="stylesheet" href="../public/user/css/base.css" />
+  <link rel="stylesheet" href="../public/user/css/home.css" />
+  <link rel="stylesheet" href="../public/user/css/tablet.css" />
+  <link rel="stylesheet" href="../public/user/css/mobile.css" />
+  <link rel="stylesheet" href="../public/user/css/product-list.css" />
+  <link rel="stylesheet" href="../public/user/css/product-detail.css" />
+  <link rel="stylesheet" href="../public/user/css/user-detail.css" />
+  <link rel="stylesheet" href="../public/user/css/cart.css" />
+  <title>LETech - Điện thoại,laptop,phụ kiện chính hãng</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="../public/admin/js/config.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <header id="header"></header>
+    <div class="grid">
+      <div class="row">
+        <div class="c-6 center">
+          <div class="cart">
+            <span class="cart__title"> Giỏ hàng của bạn </span>
+            <div class="cart__container-item">
+
+            </div>
+            <div class="cart_total">
+              <span class="cart_total-title">- Tổng tiền:</span>
+              <span id="total_price" class="cart_total-price"> 21.500.000 đ</span>
+            </div>
+            <div class="cart_info-buyer">
+              <h3 class="cart_info-buyer-header">Thông tin đặt hàng</h3>
+              <div class="cart_info-buyer-header-infomation">
+                <div class="cart_info-buyer-1">
+                  <p class="cart_info-buyer-title">Họ và tên</p>
                   <input class="cart_info-buyer-input" type="text" />
                 </div>
-                <button class="cart_info-buyer-btn">Đặt hàng</button>
+                <div class="cart_info-buyer-2">
+                  <p class="cart_info-buyer-title">
+                    Số điện thoại đặt hàng
+                  </p>
+                  <input class="cart_info-buyer-input" type="text" />
+                </div>
               </div>
+              <p class="cart_info-buyer-title">Email</p>
+              <input class="cart_info-buyer-input" type="email" />
+              <p class="cart_info-buyer-title">Lưu ý của quý khách</p>
+              <input class="cart_info-buyer-input" type="text" />
             </div>
+            <button class="cart_info-buyer-btn">Đặt hàng</button>
           </div>
         </div>
-      <footer id="footer"></footer>
-      <script>
-        $("#header").load("../layout/header.html");
-        $("#footer").load("../layout/footer.html");
-      </script>
+      </div>
     </div>
-  </body>
+    <footer id="footer"></footer>
+  </div>
+  <script>
+    $("#header").load("../layout/header.html");
+    $("#footer").load("../layout/footer.html");
+
+    function showCart(cart){
+      total = 0;
+      for (i = 0; i < cart.length; i++) {
+        c = cart[i];
+        $.ajax({
+          url: BASE_URL + API_PRODUCT,
+          async: false,
+          type: "post",
+          dataType: "text",
+          data: {
+            'action': 'query',
+            'id': c.id
+          },
+          success: function (data) {
+            obj = JSON.parse(data);
+            if (obj.status) {
+              console.log(i);
+              product = obj.product;
+              currentPrice = Number(product['price']) - Number(product['price'] * (product['discount'] / 100));
+              total += currentPrice;
+            currentPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(currentPrice)
+              $('.cart__container-item').append(`
+                  <div class="cart__container-pay">
+                    <img
+                      src="${product['thumbnail']}"
+                      alt=""
+                      class="cart__item-img"
+                    />
+                    <div class="cart__item-info">
+                      <p class="cart__item-name">
+                        ${product['title']}
+                      </p>
+                      <p class="cart__item-price">${currentPrice}</p>
+                      <div class="cart__add-remove">
+                        <span onclick="removeCart(${c.id});" class="cart__remove"> Xóa khỏi giỏ </span>
+                        <button onclick="reduceQuantity(${c.id});" class="cart__add-remove-btn">-</button>
+                        <button id="${c.id}" class="cart__add-remove-btn">${c.quantity}</button>
+                        <button onclick="increaseQuantity(${c.id});" class="cart__add-remove-btn">+</button>
+                      </div>
+                    </div>
+                  </div>
+                `);
+            }
+          }
+        });
+      }
+      total = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total)
+      $('#total_price').html('');
+      $('#total_price').append(`${total}`);
+    }
+
+    storage = localStorage.getItem('cart');
+    if (storage) {
+      cart = JSON.parse(storage);
+
+      showCart(cart);
+      
+      function reduceQuantity(id){
+        item = cart.find(c => c.id == id);
+        item.quantity--;
+        $('#'+id).html('');
+        $('#'+id).append(item.quantity);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+  
+      function increaseQuantity(id){
+        item = cart.find(c => c.id == id);
+        item.quantity++;
+        $('#'+id).html('');
+        $('#'+id).append(item.quantity);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+
+      function removeCart(id){
+        cart = cart.filter( c => c.id != id);
+        $('.cart__container-item').html('');
+        showCart(cart);
+        console.log(cart)
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+    }
+
+  </script>
+</body>
+
 </html>
