@@ -11,7 +11,7 @@
     <i class="fas fa-search"></i>
     <input class="search-input" type="text" name="" id="" placeholder="Bạn cần tìm gì?" />
   </div>
-  <div class="smartphone__shopping__cart cart">
+  <div class="smartphone__shopping__cart cart-icon">
     <i class="ti-bag"></i>
     <p></p>
   </div>
@@ -33,7 +33,7 @@
       <input class="search-input" type="text" name="" id="" placeholder="Bạn cần tìm gì?" />
     </div>
     <div class="tablet__header__top__right">
-      <div class="tablet__shopping__cart cart">
+      <div class="tablet__shopping__cart cart-icon">
         <i class="ti-bag"></i>
         <p>Giỏ hàng</p>
       </div>
@@ -93,7 +93,7 @@
         </li>
         <li class="header__navbar__item">
           <div class="header__navbar__item__wrapper">
-            <a href="../user/cart.html" class="header__navbar__item__link cart">
+            <a href="../user/cart.html" class="header__navbar__item__link cart-icon">
               <i class="ti-bag"></i>
               <div class="header__navbar__item__link__desc__wrapper">
                 <p>Giỏ</p>
@@ -106,7 +106,7 @@
         <li class="header__navbar__item">
           <div class="header__navbar__item__wrapper__last">
             <a
-              href="../user/authen/login.html"
+              href="user-detail.html"
               class="header__navbar__item__link"
             >
               <div class="header__navbar__item__link__icon__wrapper__last">
@@ -126,6 +126,7 @@
 <!-- End header -->
 
 <script>
+  //Search
   $('.search-input').on('keypress',function(e){
     if(e.keyCode == 13){
       s = $(this).val();
@@ -133,18 +134,11 @@
     }
   })
 
- 
-  storage = localStorage.getItem('cart');
-  if(storage){
-    cart = JSON.parse(storage);
-    count = 0;
-    for(i = 0; i < cart.length; i++){
-      item = cart[i];
-      count += item.quantity;
-    }
-    $('.cart').append(`
-      <div class="num">${count}</div>
-    `)
-  }
+  //cart
+  $('.cart-icon').append(`
+  <div class="num"></div>
+  `);
+ updateCart();
+
 
 </script>

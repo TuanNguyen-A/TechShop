@@ -89,7 +89,7 @@ function authenAdminToken(){
 
     if($result != null && count($result)>0){
         $_SESSION['admin'] = $result[0];
-        return result[0];
+        return $result[0];
     }
     return null;
 }
@@ -104,12 +104,12 @@ function authenUserToken(){
         return null;
     }
 
-    $sql = "select users.* from users, login_token where user.id = login_token.id_user and login_token.token = '$token'";
+    $sql = "select users.* from users, login_token where users.id = login_token.id_user and login_token.token = '$token'";
     $result = executeResult($sql);
 
     if($result != null && count($result)>0){
         $_SESSION['user'] = $result[0];
-        return result[0];
+        return $result[0];
     }
     return null;
 }

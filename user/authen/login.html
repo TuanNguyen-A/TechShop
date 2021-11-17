@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="/public/user/css/login.css" />
+    <link rel="stylesheet" href="../../public/user/css/login.css" />
     <link rel="stylesheet" href="mobile.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../../public/user/css/user-detail.css" />
     <link rel="stylesheet" href="../../public/user/css/cart.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../public/admin/js/config.js"></script>
   </head>
   <body>
     <!-- Header -->
@@ -190,7 +191,7 @@
             <!--Bắt Đầu Phần Hình Ảnh-->
             <div class="img-bg">
               <img
-                src="/public/user/img/login/login.png"
+                src="../../public/user/img/login/login.png"
                 alt="Hình Ảnh Minh Họa"
               />
             </div>
@@ -201,17 +202,12 @@
                 <h2>Trang Đăng Nhập</h2>
                 <form action="">
                   <div class="input-form">
-                    <span>Tên Người Dùng</span>
-                    <input type="text" name="" />
+                    <span>Email</span>
+                    <input id="email" type="email" name="email" />
                   </div>
                   <div class="input-form">
                     <span>Mật Khẩu</span>
-                    <input type="password" name="" />
-                  </div>
-                  <div class="nho-dang-nhap">
-                    <label
-                      ><input type="checkbox" name="" /> Nhớ Đăng Nhập</label
-                    >
+                    <input id="password" type="password" name="password" />
                   </div>
                   <div class="input-form">
                     <input type="submit" value="Đăng Nhập" />
@@ -219,7 +215,7 @@
                   <div class="input-form">
                     <p>
                       Bạn Chưa Có Tài Khoản?
-                      <a href="register.html">Đăng Ký</a>
+                      <a href="./register.html">Đăng Ký</a>
                     </p>
                   </div>
                 </form>
@@ -234,6 +230,29 @@
     <script>
       $("#header").load("../../layout/header.html");
       $("#footer").load("../../layout/footer.html");
+
+      $("form").submit(function (e) {
+          var email = $("[name=email]").val();
+          var password = $("[name=password]").val();
+          $.post(
+            BASE_URL + API_USER_AUTHEN,
+            {
+              action: LOGIN,
+              email: email,
+              password: password
+            },
+            function (data) {
+              var obj = JSON.parse(data);
+              if (obj.status == 1) {
+                window.open("../../index.html", "_self");
+              } else {
+                alert(obj.msg);
+              }
+            }
+          );
+
+          return false;
+        });
     </script>
   </body>
 </html>

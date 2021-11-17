@@ -199,6 +199,8 @@
         }
         console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+        window.open('../index.html')
       });
     </script>
   </div>

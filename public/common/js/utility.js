@@ -36,3 +36,18 @@ function pagination(num, page, total, id,search){
         `);
     }
 }
+
+function updateCart(){
+    storage = localStorage.getItem('cart');
+    if(storage){
+      cart = JSON.parse(storage);
+      count = 0;
+      for(i = 0; i < cart.length; i++){
+        item = cart[i];
+        count += item.quantity;
+      }
+      $('.num').append(`
+        ${count}
+      `)
+    }
+  }

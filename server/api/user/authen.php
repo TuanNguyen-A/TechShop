@@ -26,6 +26,25 @@ switch($action){
     case 'delete':
         doDelete();
         break; 
+    case 'info': 
+        doInfo();
+}
+
+function doInfo(){
+    $user = authenUserToken();
+    if($user){
+        $res = [
+            "status" => 1,
+            "msg" => "success!!!",
+            "user" => $user
+        ];
+    }else{
+        $res = [
+            "status" => 1,
+            "msg" => "not logged in!!!"
+        ];
+    }
+    echo json_encode($res);
 }
 
 function doLogin(){
@@ -56,7 +75,7 @@ function doLogin(){
     }else{
         $res = [
             "status" => -1,
-            "msg" => "Login fail!!!"
+            "msg" => "Login fail!!!",
         ];
     }
     echo json_encode($res);
@@ -121,6 +140,7 @@ function doUpdate(){
     $id = getPOST('id');
     $fullname = getPOST('fullname');
     $password = getPOST('password');
+    
     $address = getPOST('address');
     $phone_number = getPOST('phone_number');
     $updated_at = date('Y-m-d H:s:i');
@@ -128,9 +148,18 @@ function doUpdate(){
     $sql = "select * from users where id = '$id' and deleted = 0";
     $result = executeResult($sql);
     if(count($result) > 0){
-        $password = getPwdSecurity($password);
-        $sql = "update users set fullname = '$fullname',password = '$password',address = '$address',phone_number = '$phone_number', updated_at = '$updated_at' where id = ".$id;
-        execute($sql);
+        if($password){
+            $password = getPwdSecurity($password);
+            $sql = "update users set fullname = '$fullname',password = '$password',address = '$address',phone_number = '$phone_number', updated_at = '$updated_at' where id = ".$id;
+            execute($sql);
+        }else{
+            $sql = "update users 
+                    set fullname = '$fullname',address = '$address',phone_number = '$phone_number', updated_at = '$updated_at' 
+                    where id = ".$id;
+            execute($sql);
+        }
+
+        unset($_SESSION['user']);
 
         $res = [
             "status" => 1,
@@ -189,3 +218,4 @@ function doDelete(){
     }
     echo json_encode($res);
 }
+

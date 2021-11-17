@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="/public/user/css/register.css">
+    <link rel="stylesheet" href="../../public/user/css/register.css">
     <link rel="stylesheet" href="mobile.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../../public/user/css/user-detail.css" />
     <link rel="stylesheet" href="../../public/user/css/cart.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../public/admin/js/config.js"></script>
 </head>
 <body>
   <body>
@@ -184,15 +185,18 @@
             <div class="container">
               <h1>Form Đăng Ký</h1>
               <p class="text-label-register">Xin hãy nhập biểu mẫu bên dưới để đăng ký.</p>
-             <label for="email"><b>Tên đăng nhập</b></label>
-              <input class="input-register" type="text" placeholder="Nhập Tên đăng nhập" name="username" required>
+             <label for="email"><b>Email</b></label>
+              <input id="email" class="input-register" type="email" placeholder="Nhập Email" name="email" required>
+              <label for="fullname"><b>Họ tên</b></label>
+              <input id="fullname" class="input-register" type="text" placeholder="Nhập họ tên" name="fullname">
              <label for="psw"><b>Mật Khẩu</b></label>
-              <input class="input-register" type="password" placeholder="Nhập Mật Khẩu" name="psw" required>
+              <input id="psw" class="input-register" type="password" placeholder="Nhập Mật Khẩu" name="psw" required>
              <label for="psw-repeat"><b>Nhập Lại Mật Khẩu</b></label>
-              <input class="input-register" type="password" placeholder="Nhập Lại Mật Khẩu" name="psw-repeat" required>
-             <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Nhớ Đăng Nhập
-              </label>
+              <input id="psw-repeat" class="input-register" type="password" placeholder="Nhập Lại Mật Khẩu" name="psw-repeat" required>
+              <label for="address"><b>Địa chỉ</b></label>
+              <input id="address" class="input-register" type="text" placeholder="Nhập địa chỉ" name="address" >
+              <label for="phone_number"><b>Số điện thoại</b></label>
+              <input id="phone_number" class="input-register" type="text" placeholder="Nhập số điện thoại" name="phone_number" >
              <div class="clearfix">
                 <button type="submit" class="signupbtn">Đăng kí</button>
               </div>
@@ -205,6 +209,38 @@
   <footer id="footer"></footer>
     <script>
       $("#footer").load("../../layout/footer.html");
+
+      $(function(){
+        $("form").submit(function (e) {
+          var fullname = $("[name=fullname]").val();
+          var phone_number = $("[name=phone_number]").val();
+          var email = $("[name=email]").val();
+          var password = $("[name=psw]").val();
+          var address = $("[name=address]").val();
+
+          $.post(
+            BASE_URL + API_USER_AUTHEN,
+            {
+              action: REGISTER,
+              fullname: fullname,
+              email: email,
+              password: password,
+              address: address,
+              phone_number: phone_number,
+            },
+            function (data) {
+              var obj = JSON.parse(data);
+              if (obj.status == 1) {
+                window.open("login.html", "_self");
+              } else {
+                alert(obj.msg);
+              }
+            }
+          );
+
+          return false;
+        });
+      })
     </script>
 </body>
 </html>

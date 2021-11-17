@@ -18,6 +18,7 @@
   <title>LETech - Điện thoại,laptop,phụ kiện chính hãng</title>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../public/admin/js/config.js"></script>
+  <script src="../public/common/js/utility.js"></script>
 </head>
 
 <body>
@@ -35,26 +36,31 @@
               <span class="cart_total-title">- Tổng tiền:</span>
               <span id="total_price" class="cart_total-price"> 21.500.000 đ</span>
             </div>
-            <div class="cart_info-buyer">
-              <h3 class="cart_info-buyer-header">Thông tin đặt hàng</h3>
-              <div class="cart_info-buyer-header-infomation">
-                <div class="cart_info-buyer-1">
-                  <p class="cart_info-buyer-title">Họ và tên</p>
-                  <input class="cart_info-buyer-input" type="text" />
+            <form action="">
+              <div class="cart_info-buyer">
+                <h3 class="cart_info-buyer-header">Thông tin đặt hàng</h3>
+                <div class="cart_info-buyer-header-infomation">
+                  <div class="cart_info-buyer-1">
+                    <p class="cart_info-buyer-title">Họ và tên</p>
+                    <input id="fullname" name="fullname" class="cart_info-buyer-input" type="text"/>
+                  </div>
+                  <div class="cart_info-buyer-2">
+                    <p class="cart_info-buyer-title">
+                      Số điện thoại đặt hàng
+                    </p>
+                    <input id="phone_number" name="phone_number" class="cart_info-buyer-input" type="text" />
+                  </div>
                 </div>
-                <div class="cart_info-buyer-2">
-                  <p class="cart_info-buyer-title">
-                    Số điện thoại đặt hàng
-                  </p>
-                  <input class="cart_info-buyer-input" type="text" />
-                </div>
+                <p class="cart_info-buyer-title">Email</p>
+                <input id="email" name="email" class="cart_info-buyer-input" type="email" />
+                <p class="cart_info-buyer-title">Địa chỉ giao hàng</p>
+                <input id="address" name="address" class="cart_info-buyer-input" type="text" />
+                <p class="cart_info-buyer-title">Lưu ý của quý khách</p>
+                <input id="note" name="note" class="cart_info-buyer-input" type="text" />
+
               </div>
-              <p class="cart_info-buyer-title">Email</p>
-              <input class="cart_info-buyer-input" type="email" />
-              <p class="cart_info-buyer-title">Lưu ý của quý khách</p>
-              <input class="cart_info-buyer-input" type="text" />
-            </div>
-            <button class="cart_info-buyer-btn">Đặt hàng</button>
+              <button class="cart_info-buyer-btn">Đặt hàng</button>
+            </form>
           </div>
         </div>
       </div>
@@ -65,7 +71,7 @@
     $("#header").load("../layout/header.html");
     $("#footer").load("../layout/footer.html");
 
-    function showCart(cart){
+    function showCart(cart) {
       total = 0;
       for (i = 0; i < cart.length; i++) {
         c = cart[i];
@@ -85,7 +91,7 @@
               product = obj.product;
               currentPrice = Number(product['price']) - Number(product['price'] * (product['discount'] / 100));
               total += currentPrice;
-            currentPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(currentPrice)
+              currentPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(currentPrice)
               $('.cart__container-item').append(`
                   <div class="cart__container-pay">
                     <img
@@ -116,30 +122,31 @@
       $('#total_price').append(`${total}`);
     }
 
+    //show cart
     storage = localStorage.getItem('cart');
     if (storage) {
       cart = JSON.parse(storage);
 
       showCart(cart);
-      
-      function reduceQuantity(id){
+
+      function reduceQuantity(id) {
         item = cart.find(c => c.id == id);
         item.quantity--;
-        $('#'+id).html('');
-        $('#'+id).append(item.quantity);
-        localStorage.setItem('cart', JSON.stringify(cart));
-      }
-  
-      function increaseQuantity(id){
-        item = cart.find(c => c.id == id);
-        item.quantity++;
-        $('#'+id).html('');
-        $('#'+id).append(item.quantity);
+        $('#' + id).html('');
+        $('#' + id).append(item.quantity);
         localStorage.setItem('cart', JSON.stringify(cart));
       }
 
-      function removeCart(id){
-        cart = cart.filter( c => c.id != id);
+      function increaseQuantity(id) {
+        item = cart.find(c => c.id == id);
+        item.quantity++;
+        $('#' + id).html('');
+        $('#' + id).append(item.quantity);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+
+      function removeCart(id) {
+        cart = cart.filter(c => c.id != id);
         $('.cart__container-item').html('');
         showCart(cart);
         console.log(cart)
@@ -147,6 +154,51 @@
       }
     }
 
+    //Order
+    $('form').submit(function (e) {
+      var fullname = $("[name=fullname]").val();
+      var phone_number = $("[name=phone_number]").val();
+      var email = $("[name=email]").val();
+      var address = $("[name=address]").val();
+      var note = $("[name=note]").val();
+      $.post(
+        BASE_URL + API_ORDER,
+        {
+          action: ADD,
+          fullname: fullname,
+          phone_number: phone_number,
+          email: email,
+          address: address,
+          note: note,
+          cart
+        },
+        function (data) {
+          var obj = JSON.parse(data);
+          alert(data);
+          if (obj.status == 1) {
+            console.log('OK')
+            localStorage.removeItem('cart');
+            window.open("../index.html", "_self");
+          } else {
+            alert(obj.msg);
+          }
+        }
+      );
+    });
+
+    //show user information 
+    $.post(BASE_URL + API_USER_AUTHEN, {
+        'action': 'info'
+      }, function (data) {
+        obj = JSON.parse(data);
+        if(obj.status == 1){
+          user = obj.user;
+          $('[name=fullname]').val(user['fullname']);
+          $('[name=email]').val(user['email']);
+          $('[name=phone_number]').val(user['phone_number']);
+          $('[name=address]').val(user['address']);
+        }
+      });
   </script>
 </body>
 

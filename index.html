@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="./public/user/css/mobile.css" />
   <title>LETech - Điện thoại,laptop,phụ kiện chính hãng</title>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+  <script src="public/common/js/utility.js"></script>
   <script src="public/admin/js/config.js"></script>
 </head>
 
@@ -49,7 +49,6 @@
         'action': 'categorize'
       }, function (data) {
         var obj = JSON.parse(data);
-        console.log(obj);
         if (obj.status == 1) {
           categoryList = obj.categoryList;
           for (i = 0; i < categoryList.length; i++) {
@@ -107,8 +106,6 @@
               }else{
                 descriptionHtml='';
               }
-
-              console.log(product['id']);
 
               productHtml +=`
                     <div class="featured__phone__product__item">

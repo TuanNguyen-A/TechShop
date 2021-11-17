@@ -83,49 +83,51 @@ function doOrderList(){
 function doAdd(){
     $admin = authenAdminToken();
     if($admin == null){
-        $res = [
-            "status" => -1,
-            "msg" => "Not login!!!"
-        ];
-        echo json_encode($res);
-        return;
     }
+    
+    $fullname = getPOST('fullname');
+    $phone_number = getPOST('phone_number');
+    $email = getPOST('email');
+    $address = getPOST('address');
+    $note = getPOST('note');
+    $cart = getPOST('cart');
+    $order_date = date('Y-m-d H:s:i');
+
     $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
     mysqli_set_charset($conn, 'UTF-8');
 
-    if(getPOST('category_id')==""){
-        $category_id = [];
-    }else{
-        $category_id = getPOST('category_id');
-    }
-    
-
-    $admin_create_id=$admin['id'];
-    $thumbnail = getPOST('thumbnail');
-    $title = getPOST('title');
-    $quantity = getPOST('quantity');
-    $price = getPOST('price');
-    $discount = getPOST('discount');
-    $description = getPOST('description');
-    $created_at = $updated_at =  date('Y-m-d H:s:i');
-
-    $sql = "insert into products(admin_create_id, title, price, quantity, discount, thumbnail, description, created_at, updated_at, deleted) values ( '$admin_create_id', '$title', '$price', '$quantity', '$discount', '$thumbnail', '$description', '$created_at', '$updated_at', '0')";
-    
+    $sql = "INSERT INTO orders(fullname, email, address, phone_number, note, order_date, status) 
+            VALUES ('$fullname', '$email', '$address', '$phone_number', '$note', '$order_date', 0)";
     
     if (mysqli_query($conn, $sql)) {
         $last_id = mysqli_insert_id($conn);
-        
+        $total = 0;
 
-        
-        for($i = 0; $i<count($category_id); $i++){
-            $sql = "insert into product_category (product_id, category_id) values ($last_id ,$category_id[$i])";
+        for($i = 0; $i < count($cart); $i++){
+            $item = $cart[$i];
+            $product_id = $item['id'];
+            $num = $item['quantity'];
+
+            //giá thời điểm mua
+            $sql = "SELECT price, discount 
+                    FROM products
+                    WHERE id = $product_id";
+            $resultset = mysqli_query($conn, $sql);
+            $data = mysqli_fetch_array($resultset, 1);
+            $price = $data['price'] - $data['price']*($data['discount']/100);
+            $total += $price; 
+
+            $sql = "INSERT INTO order_details(order_id, product_id, price, num)
+                    VALUES('$last_id', '$product_id', '$price', '$num')";
             mysqli_query($conn, $sql);
         }
-        mysqli_close($conn);
+
+        $sql = "UPDATE orders SET total_money = '$total' WHERE id = '$last_id'";
+        mysqli_query($conn, $sql);
 
         $res = [
             "status" => 1,
-            "msg" => "Create account success!!!"
+            "msg" => "Order success!!!"
         ];
         echo json_encode($res);
         return;
@@ -138,7 +140,7 @@ function doAdd(){
         echo json_encode($res);
         return;
     }
-    
+
 }
 
 function doUpdate(){
