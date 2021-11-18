@@ -37,14 +37,53 @@
 
       </div>
     </div>
+    <footer id="footer"></footer>
   </body>
-  <footer id="footer"></footer>
 
   <script>
     $("#header").load("layout/header.html");
     $("#footer").load("layout/footer.html");
 
     $(function () {
+      //logo
+      $('.header__logo__img').html(`
+        <a href="#">
+          <img src="public/user/img/Desktop logo/logoLE.png" alt=""/>
+        </a>
+      `);
+      $('.smartphone__header__logo').html(`
+        <a href="#">
+          <img src="public/user/img/Desktop logo/logoLE.png" alt=""/>
+        </a>
+      `);
+      $('.tablet__header__logo').html(`
+        <a href="#">
+          <img src="public/user/img/Desktop logo/logoLE.png" alt=""/>
+        </a>
+      `);
+      
+      // account
+      $('.header__navbar__item__wrapper__last').html(`
+      <a
+        href="user/user-detail.html"
+        class="header__navbar__item__link"
+      >
+        <div class="header__navbar__item__link__icon__wrapper__last">
+          <i class="far fa-user-circle"></i>
+        </div>
+        <div class="header__navbar__item__link__desc__wrapper">
+          <p>Smember</p>
+        </div>
+      </a>
+      `);
+      $('#tablet-user').attr('href','user/user-detail.html')
+
+      //cart
+      $('.tablet__shopping__cart').attr('href','user/cart.html')
+      $('.header__navbar__item__link ').attr('href','user/cart.html')
+      $('.smartphone__shopping__cart').attr('href','user/cart.html')
+      
+      //show product
       $.post(BASE_URL + API_PRODUCT, {
         'action': 'categorize'
       }, function (data) {
@@ -161,9 +200,7 @@
             <li class="slidebar__item">
               <a href="user/product-list.html?id=${cate['id']}" class="slidebar__item__link">
                 <div class="slidebar__item__link__text__wrapper">
-                  <div class="slidebar__item__link__text__wrapper__icon__box">
-                    <i class="fas fa-bullhorn"></i>
-                  </div>
+                  
                   <p>${cate['name']}</p>
                 </div>
               </a>
