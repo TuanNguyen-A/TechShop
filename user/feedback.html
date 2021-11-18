@@ -1,16 +1,21 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Feedback</title>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="/public/user/css/feedback.css">
- </head>
- <body>
-   <div class="slide grid wide">
-     <div class="row">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/user/css/feedback.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="../public/admin/js/config.js"></script>
+</head>
+
+<body>
+  <div class="slide grid wide">
+    <div class="row">
       <section>
         <div class="container">
           <div class="containerinfo">
@@ -28,44 +33,94 @@
                   <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
                   <span>letech@gmail.com</span>
                 </li>
-               <li>
+                <li>
                   <span><i class="fa fa-phone-square" aria-hidden="true"></i></span>
                   <span>038.88854.075</span>
                 </li>
               </ul>
             </div>
-         </div>
-         <!--form feedback-->
-         <div class="containerForm">
+          </div>
+          <!--form feedback-->
+          <div class="containerForm">
             <h2>Gửi Lời Nhắn</h2>
-            <form class="formBox">
-                <div class="inputBox w50">
-                    <input class="input-feedback" type="text" name="" required>
-                    <span>Họ</span>
-                </div>
-                <div class="inputBox w50">
-                    <input class="input-feedback" type="text" name="" required>
-                    <span>Tên</span>
-                </div>
-                <div class="inputBox w50">
-                    <input class="input-feedback" type="text" name="" required>
-                    <span>Email</span>
-                </div>
-                <div class="inputBox w50">
-                    <input class="input-feedback" type="text" name="" required>
-                    <span>Số Điện Thoại</span>
-                </div>
-                <div class="inputBox w100">
-                    <textarea name="" required></textarea>
-                    <span class="mess">Lời Nhắn Của Bạn</span>
-                </div>
-                <div class="inputBox w100">
-                    <input type="submit" value="Gửi">
-                </div>
-              </form>
-        </div>
-     </section>  
-     </div>
-   </div>
- </body>
- </html>
+            <form action="" class="formBox" method="post">
+              <div class="inputBox w50">
+                <input id="fullname" name="fullname" class="input-feedback" type="text" name="" required>
+                <span>Họ Tên</span>
+              </div>
+              <div class="inputBox w50">
+                <input id="email" name="email" class="input-feedback" type="email" name="" required>
+                <span>Email</span>
+              </div>
+              <div class="inputBox w50">
+                <input id="address" name="address" class="input-feedback" type="text" name="" required>
+                <span>Địa chỉ</span>
+              </div>
+              <div class="inputBox w50">
+                <input id="phone_number" name="phone_number" class="input-feedback" type="text" name="" required>
+                <span>Số Điện Thoại</span>
+              </div>
+              <div class="inputBox w100">
+                <input id="subject_name" name="subject_name" class="input-feedback" type="text" name="" required>
+                <span>Chủ đề</span>
+              </div>
+              <div class="inputBox w100">
+                <textarea id="note" name="note" required></textarea>
+                <span class="mess">Lời Nhắn Của Bạn</span>
+              </div>
+              <div class="inputBox w100">
+                <input type="submit" value="Gửi">
+              </div>
+            </form>
+          </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    $.post(BASE_URL + API_USER_AUTHEN, {
+      'action': 'info'
+    }, function (data) {
+      obj = JSON.parse(data);
+      if (obj.status == 1) {
+        user = obj.user;
+        id = user['id'];
+        $('[name=fullname]').val(user['fullname']);
+        $('[name=email]').val(user['email']);
+        $('[name=phone_number]').val(user['phone_number']);
+        $('[name=address]').val(user['address']);
+      }else{
+        window.open('authen/login.html','_self');
+      }
+    });
+
+    $('form').submit(function () {
+      fullname = $('[name=fullname]').val();
+      email = $('[name=email]').val();
+      address = $('[name=address]').val();
+      phone_number = $('[name=phone_number]').val();
+      subject_name = $('[name=subject_name]').val();
+      note = $('[name=note]').val();
+
+      $.post(BASE_URL + API_FEEDBACK, {
+        action: ADD,
+        fullname: fullname,
+        email: email,
+        address: address,
+        phone_number: phone_number,
+        subject_name: subject_name,
+        note: note
+      },
+      function(data){
+        obj = JSON.parse(data);
+        if(obj.status){
+          window.open('user-detail.html','_self');
+        }
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

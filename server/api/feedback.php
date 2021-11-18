@@ -9,6 +9,9 @@ require ('../utils/utility.php');
 $action = getPOST('action');
 
 switch($action){
+    case 'add':
+        doAdd();
+        break;
     case 'list':
         doFeedbackList();
         break;
@@ -21,6 +24,29 @@ switch($action){
     case 'delete':
         doDelete();
         break;
+}
+
+function doAdd(){
+    $user = authenUserToken();
+    $user_id = $user['id'];
+    $fullname = getPOST('fullname');
+    $email = getPOST('email');
+    $address = getPOST('address');
+    $phone_number = getPOST('phone_number');
+    $subject_name = getPOST('subject_name');
+    $note = getPOST('note');
+
+
+    $sql = "insert into feedback(user_id, fullname, email, address, phone_number, subject_name, note, readed) 
+            values ('$user_id','$fullname','$email','$address','$phone_number','$subject_name','$note','0')";
+    execute($sql);
+
+    $res = [
+        "status" => 1,
+        "msg" => "feedback success!!!"
+    ];
+        
+    echo json_encode($res);
 }
 
 function doFeedbackList(){
